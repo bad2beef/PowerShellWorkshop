@@ -85,6 +85,10 @@ $Array
 $Array.Count
 $Array[1]
 $Array.GetValue( 1 )
+$Array[3] = 4
+$Array.Add( 4 )
+$Array += 4
+$Array
 
 $Hashtable = @{ 'One' = 1 ; 'Two' = 2 ; 'Three' = 3 }
 $Hashtable
@@ -94,11 +98,17 @@ $Hashtable['One']
 $Hashtable.One
 $Hashtable.Item( 'One' )
 $Hashtable.Keys
+$Hashtable['Four'] = 4
+$Hashtable
+$Hashtable.Add( 'Five', 5 )
+$Hashtable
 
 # 1.2.9
+1 = 2
+1 == 2
+1 -eq 2
 1 -gt 2
 1 -lt 2
-1 -eq 2
 1 -ge 2
 1 -le 2
 1 -not 2
@@ -119,25 +129,33 @@ $Hashtable.Keys
 
 # 1.3
 Write-Host -{TAB}
+man Write-Host
 Get-Help Write-Host
 Get-Help about_Command_Syntax
 Update-Help
 
 # 2.1
-Get-Process
-Get-Process | Select-Object Name, Id
-Get-Process | Select-Object Name, Id, CPU(s)
-Get-Process | Select-Object Name, Id, 'CPU(s)'
-Get-Process | Select-Object Name, Id, CPU
+Get-Process -Name 'powershell'
+Get-Process -Name 'powershell' | Select-Object Name, Id
+Get-Process -Name 'powershell' | Select-Object Name, Id, CPU(s)
+Get-Process -Name 'powershell' | Select-Object Name, Id, 'CPU(s)'
+Get-Process -Name 'powershell' | Select-Object Name, Id, CPU
+Get-Help about_Types.ps1xml
 
 # 2.2
-Get-Process
+Get-Process -Name 'powershell'
 Get-Process | Where-Object { $_.Name -like 'powershell' }
 Get-Process | Where-Object { $PSItem.Name -like 'powershell' }
 Get-Process | Where-Object -FilterScript { $_.Name -like 'powershell' }
 Get-Process | Where-Object -FilterScript { $_.Name -like 'powershell' ; $true }
 Get-Process | Where-Object { ( $_.Name -like 'powershell' ) -and ( $_.CPU -gt 1 ) }
 Get-Process | Where-Object Name -like 'Powershell'
+Get-Process | Where-Object Name -like 'Powershell' -and 'CPU' -gt 1
+Get-Process | Where-Object ( Name -like 'Powershell' ) -and ( 'CPU' -gt 1 )
+Get-Command -Name 'Where-Object'
+Get-Command -Name 'Where-Object' | Get-Member
+Get-Command -Name 'Where-Object' | Select-Object Definition
+Get-Command -Name 'Where-Object' | Select-Object -ExpandProperty Definition
 Get-Process | Where-Object -Property 'Name' -like -Value 'powershell'
 Get-Process | Where-Object { $_.StartTime -gt ( Get-Date ).AddHours( -2 ) }
 
@@ -148,13 +166,20 @@ notepad.exe processes.txt
 
 Get-Process | Out-File -FilePath processes.txt
 Get-Content -Path processes.txt
+Get-Content -Path processes.txt | Where-Object { 'ProcessName' -like '*powershell*' }
+( Get-Content -Path processes.txt ).GetType()
+( Get-Content -Path processes.txt )[10].GetType()
 Get-Content -Path processes.txt | Where-Object { $_ -like '*powershell*' }
 Get-Content -Path processes.txt  -Raw | Where-Object { $_ -like '*powershell*' }
 
 Get-Process | Where-Object { $_.StartTime -gt ( Get-Date ).AddHours( -2 ) }
 Get-Process | Where-Object { $_.StartTime -gt ( Get-Date ).AddHours( -2 ) } | Export-Csv -Path processes.csv
 Import-Csv -Path processes.csv
-Import-Csv -Path processes.csv | Where-Object { $_.Name -like 'powershell' } 
+Import-Csv -Path processes.csv | Where-Object { $_ -like 'powershell' }
+( Import-Csv -Path processes.csv ).GetType()
+( Import-Csv -Path processes.csv )[0].GetType()
+( Import-Csv -Path processes.csv )[0] | Get-Member
+Import-Csv -Path processes.csv | Where-Object { $_.Name -like 'powershell' }
 Import-Csv -Path processes.csv | Where-Object { $_.Name -like 'powershell' } | Format-Table Name, Id, StartTime
 
 Get-Process | Where-Object { $_.StartTime -gt ( Get-Date ).AddHours( -2 ) } | Export-Clixml -Path processes.xml
@@ -189,6 +214,7 @@ $File
 $File.Delete()
 $File
 Get-Item -Path test.txt
+$File.Delete()
 
 New-Item -Type File -Path test.txt
 Get-ChildItem | Select-Object FullName
@@ -295,6 +321,7 @@ Function CountTo ( $Number )
 }
 CountTo(4)
 CountTo 4
+CountTo -Number 4
 
 Function CountTo
 {
@@ -454,7 +481,7 @@ Get-Command -Name AFunction
 Remove-Module Test
 
 # 5.1
-powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -WindowStyle Normal -Command "Write-Host 'Hello world!'"
+powershell.exe -Command "Write-Host 'Hello world!'"
 Set-Content -Path 'HelloWorld.ps1' -Value "Write-Host 'Hello world!'"
 powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -WindowStyle Normal -File 'HelloWorld.ps1'
 
