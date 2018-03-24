@@ -37,11 +37,12 @@ ps ax
 Get-Process
 Get-Process 'powershell'
 Get-Process powershell
+Get-Process -Name 'powershell'
 Get-Process('powershell')
 Get-Process('powershell', 'explorer')
 Get-Process powershell, explorer
 Get-Process @( 'powershell', 'explorer' )
-Get-Process -Name 'powershell'
+
 
 # 1.2.6
 1 + 1 * 10
