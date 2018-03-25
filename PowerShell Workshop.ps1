@@ -21,6 +21,8 @@ $Variable = 'value'
 $Variable
 $Variable = 'Variable $Variable'
 $Variable
+${Bat'leth Variable} = $Variable
+${Bat'leth Variable}
 
 # 1.2.4
 $Variable.Length
@@ -491,71 +493,7 @@ $EncodedScript = [System.Convert]::ToBase64String( [System.Text.Encoding]::Unico
 $EncodedScript
 powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACcASABlAGwAbABvACAAdwBvAHIAbABkACEAJwA=
 
-# 5.2
-Start-Job -ScriptBlock { Start-Sleep 10 }
-Get-Job
-Start-Job -ScriptBlock { Get-Process }
-Receive-Job 3
-Get-Job | Remove-Job
-
 # 6.1
-Invoke-WebRequest -Uri 'http://google.com'
-$Response = Invoke-WebRequest -Uri 'http://google.com' -SessionVariable 'WebSession'
-$WebSession
-$Response.Forms[0].Fields
-$Form = $Response.Forms[0]
-$Form.Fields['q'] = 'powershell'
-$Form.Submit()
-$SearchResults = Invoke-WebRequest -Uri ( 'http://google.com' + $Form.Action ) -Method $Form.Method -WebSession $WebSession -Body $Form.Fields
-$SearchResults.RawContent
-
-$WebClient = New-Object -TypeName System.Net.WebClient
-$WebClient.DownloadFile( 'https://www.google.com/favicon.ico', 'C:\Vagrant\google_icon.ico')
-
-# 6.2
-$Service = New-WebServiceProxy -Uri 'http://google.com'
-$Service = New-WebServiceProxy -Uri 'http://www.webservicex.net/geoipservice.asmx?WSDL'
-$Service | Get-Member
-Get-Member -InputObject $Service -Name GetGeoIP | Format-List
-Get-Member -InputObject $Service -Name GetGeoIPAsync | Format-List
-$Service.GetGeoIP( '8.8.8.8' )
-
-# 6.3
-$IE = New-Object -TypeName 'InternetExplorer'
-$IE = New-Object -ComObject 'InternetExplorer.Application'
-$IE
-$IE | Get-Member
-$IE.GetType()
-$IE.Visible = $true
-$IE.Navigate( 'http://google.com' )
-$IE
-$IE.Document
-$IE.Document | Get-Member
-$IE.Document.cookie
-$IE.Document.title
-$IE.Document.title = 'Foobar!'
-$IE.Document.childNodes[1].innerHTML
-$IE.Quit()
-
-# 7.1
-$ComputerName = 'localhost'
-$Credentials = Get-Credential
-$Session = New-PSSession -Credential $Credentials -ComputerName $ComputerName
-Enter-PSSession $Session
-echo $env:COMPUTERNAME
-exit
-Remove-PSSession $Session
-
-Invoke-Command -Credential $Credentials -ComputerName $ComputerName -ScriptBlock { Write-Host $env:COMPUTERNAME }
-
-# 7.2
-$ComputerName = 'localhost'
-$Credentials = Get-Credential
-$Session = New-CimSession -Credential $Credentials -ComputerName $ComputerName
-Get-CimInstance -CimSession $Session -ClassName Win32_Service
-Remove-CimSession $Session
-
-# 8.1
 $FilePath = ( '{0}\file.txt' -f ( Get-Location ).Path )
 [System.IO.File]::WriteAllLines( $FilePath, ( Get-Process ) )
 notepad.exe .\file.txt
@@ -577,6 +515,7 @@ $Buffer
 [System.Text.Encoding]::ASCII.GetString( $Buffer )
 $FileStream.Dispose()
 
+# 6.2
 Set-Content -Path '.\file.txt' -Value ( Get-Process | Out-String )
 [IO.MemoryStream]$CompressedData = New-Object -TypeName System.IO.MemoryStream
 [IO.Compression.GZipStream]$GZipStream = New-Object -TypeName System.IO.Compression.GZipStream -ArgumentList @( $CompressedData, [System.IO.Compression.CompressionMode]::Compress )

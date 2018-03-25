@@ -31,15 +31,15 @@ Core workshop content is available to all on adjacent to this readme.
 ### Focused Modules
 Focused modules are mix-and-match learning addons we'll work through during
 in-person workshops based on event or organization audiences.
-1. Data Protection – Cryptography and the Data Protection API.
-2. Network Programming – Network and sockets programming.
-3. Scaling Out – Remoting, Jobs, and Event-Driven scripting.
-4. Web Services – Utilizing web services through web-based APIs and regular web sites.
+1. __Data Protection__ – Cryptography and the Data Protection API.
+2. __Network Programming__ – Network and sockets programming.
+3. __Scaling Out__ – Remoting, Jobs, and Event-Driven scripting.
+4. __Web Services__ – Utilizing web services through web-based APIs and regular web sites.
 
 ## Prerequisites
 1. Basic scripting or programming experience in just about any language. Some familiarity with concepts such as variables, conditionals, flow control, and basic object-oriented programming is required.
 2. An Windows operating system with GUI and PowerShell 5.0 or later. It is possible to run through most workshop content on a headless Windows Core box, or a Linux or Mac OS operating system with PowerShell Core 6.0, however some of the more advanced material in the additional Focused Modules may not be accessible in such environments.
-3. Local or remote system with WinRM enabled and usable. (For Remoting section only.) If using the provided Vagrant box once may connect back to localhost over the remoting protocols as an academic exercise. If attending an in-person workshop some network-available systems may be provided depending on venue.
+3. Local or remote system with WinRM enabled and usable. (For Remoting section only.) If using the provided Vagrant box one may connect back to localhost over the remoting protocols as an academic exercise. If attending an in-person workshop some network-available systems may be provided depending on venue.
 
 ## Workshop Materials
 So, what’s in the box?
