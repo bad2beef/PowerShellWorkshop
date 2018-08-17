@@ -39,10 +39,6 @@ possible to run through most workshop content on a headless Windows Core box,
 or a Linux or Mac OS operating system with PowerShell Core 6.0, however some of
 the more advanced material in the additional Focused Modules may not be
 accessible in such environments.
-3. Local or remote system with WinRM enabled and usable. (For Remoting section
-only.) If using the provided Vagrant box one may connect back to localhost over
-the remoting protocols as an academic exercise. If attending an in-person
-workshop some network-available systems may be provided depending on venue.
 
 ## Workshop Materials
 So, what’s in the box?
