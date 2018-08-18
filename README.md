@@ -2,8 +2,8 @@
 ## Introduction
 **This is Studly McBeefy’s and Beefy McStudly's PowerShell workshop.** The aim
 of this workshop is to get you competent in PowerShell quickly. There are no
-quirky gimmicks or “master class” shenaniganry here. Our approach is simple.
-We’ll walk through a bunch of things you should know and see what happens. If
+quirky gimmicks or “master class” shenaniganry here. Our approach is simple;
+we’ll walk through a bunch of things you should know and see what happens. If
 you’re the curious type you’ll dig deeper in each area on your own. If not, you
 should still be able to fumble though quite a bit. At the end of it all you
 should be able to read a lot of the PowerShell out there, and be able to churn
@@ -16,7 +16,7 @@ created to facilitate guided exploration. If you’re doing this on your own a
 few things may not be so clear. Still, in the interests of saving you from
 skiddiedom open materials are provided. There is enough here to provide the
 “what”, but the “why”, “when” and “how” may require some additional
-instruction which is best spoken, rather than read.
+instruction which is best heard, rather than read.
 
 ## Topics Covered
 ### Core Workshop
