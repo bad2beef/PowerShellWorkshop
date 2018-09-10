@@ -36,7 +36,7 @@ $jobInput = $guys
 $q = [System.Collections.Queue]::Synchronized( (New-Object System.Collections.Queue) )
 $rq = [System.Collections.Queue]::Synchronized( (New-Object System.Collections.Queue) )
 
-$jobInput[0..10] | %{
+$jobInput | %{
     $q.Enqueue($_)
 }
 
@@ -61,7 +61,8 @@ for( $i = 0; $i -lt $maxConcurrentJobs; $i++ )
     RunJobFromQueue
 }
 
-while ($true){}
+while ((get-job).state -match "Running"){
+	start-sleep -milliseconds 500
+}
 
-write-host $q
-write-host $rq
+$rq | out-file results.txt
