@@ -50,8 +50,8 @@ function Decrypt-String($key, $encryptedStringWithIV) {
     [System.Text.Encoding]::UTF8.GetString($unencryptedData).Trim([char]0)
 }
 
-$key = Create-AesKey
-$key
-$unencryptedString = "blahblahblah"
-$encryptedString = Encrypt-String $key $unencryptedString
-$backToPlainText = Decrypt-String $key $encryptedString
+#$key = Create-AesKey
+#$key
+#$unencryptedString = "blahblahblah"
+#$encryptedString = Encrypt-String $key $unencryptedString
+#$backToPlainText = Decrypt-String $key $encryptedString
