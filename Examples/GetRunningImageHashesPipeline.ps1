@@ -2,6 +2,7 @@
     GetRunningImageHashesPipeline.ps1
     PowerShell Workshop Example
     Cleaner version of the GetRunningImageHashes.
+    Demonstrates: Custom Objects / PSObject, Invoke-WebRequest, Regular Expression -match
     Invoke .\GetRunningImageHashesPipeline.ps1 | Select-Object FileHash, Status, Path | Format-Table -AutoSize
 #>
 

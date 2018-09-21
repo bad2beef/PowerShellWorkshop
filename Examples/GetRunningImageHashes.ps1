@@ -2,6 +2,7 @@
     GetRunningImageHashes.ps1
     PowerShell Workshop Example
     Report file hashes for each unique executable image currently running.
+    Demonstrates: .NET I/O Streams, Arbitrary .NET calls, ArrayList, Custom Objects / PSObject, Invoke-WebRequest, Regular Expression -match
 #>
 <#
     Define a separate function for computing file hashes. We separate it out to
